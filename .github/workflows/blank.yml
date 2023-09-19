@@ -1,45 +1,34 @@
-# Nome da Actions:  
-name: Snake Game
+name: Gerar Datas
 
-# Controlador do tempo que sera feito a atualização dos arquivos.
 on:
-  schedule:
-      # Será atualizado a cada 5 horas.
-    - cron: "0 */5 * * *"
-
-# Permite executar na na lista de Actions (utilizado para testes de build).
+  schedule: # executar a cada 1 hora
+    - cron: "* */1 * * *"
   workflow_dispatch:
 
-# Regras
 jobs:
   build:
+    name: Atualizar Datas
     runs-on: ubuntu-latest
     steps:
+      # Animação da Cobra
+      # - uses: Platane/snk@master
+      #   id: snake-gif
+      #   with:
+      #     github_user_name: JoaoNeto132
+      #     svg_out_path: dist/github-contribution-grid-snake.svg
 
-    # Checks repo under $GITHUB_WORKSHOP, so your job can access it
-      - uses: actions/checkout@v2
-
-    # Repositorio que será utilizado para gerar os arquivos.
-      - uses: Platane/snk@master
-        id: snake-gif
+      # gera um jogo da cobra a partir do gráfico de contribuições de um usuário do GitHub (<github_user_name>), produzindo uma animação SVG em <svg_out_path>
+      - name: Gerar github-contribution-grid-snake.svg
+        uses: Platane/snk/svg-only@v2
         with:
-          github_user_name: EduardoLoppes #Seu usuario
-          gif_out_path: dist/github-contribution-grid-snake.gif
-          svg_out_path: dist/github-contribution-grid-snake.svg
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/github-contribution-grid-snake.svg
+            dist/github-contribution-grid-snake.svg
+    
 
-      - run: git status
-
-      # Para as atualizações.
-      - name: Push changes
-        uses: ad-m/github-push-action@master
+      - uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: master
-          force: true
-
-      - uses: crazy-max/ghaction-github-pages@v2.1.3
-        with:
-          # the output branch we mentioned above
           target_branch: output
           build_dir: dist
         env:
