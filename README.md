@@ -1,7 +1,7 @@
 ## Bem vindo! Eu sou João Pereira Neto.
 
-- 🎓 Técnico em desenvolvimento de sistema - ETEC JALES.
-- 🔭 Formado em Analise de Desenvolvimento de Sistemas AMS pela FATEC Jales.
+- 🎓 Técnico em desenvolvimento de sistema - ETEC Jales.
+- 🔭 Tecnólogo em Análise e Desenvolvimento de Sistemas pela FATEC Jales.
 - 🎮 Apaixonado em games.
 
 <div align="center">
